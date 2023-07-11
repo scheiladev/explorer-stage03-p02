@@ -1,0 +1,272 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  font-size: 62.5%;
+  
+  --hue: 195;
+  --blue-700: hsl(var(--hue), 91%, 25%);
+  --blue-500: hsl(var(--hue), 46%, 40%);
+  --blue-100: hsl(var(--hue), 100%, 98%);
+
+  --gray-700: hsl(240, 6%, 8%);
+  --gray-900: hsl(240, 6%, 13%);
+  
+  --white: hsl(0, 0%, 100%);
+  --white-100: hsla(0, 0%, 100%, 0.2);
+}
+
+html,
+body,
+input {
+  font-family: "Mulish", sans-serif;
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: var(--white);
+  color: var(--gray-700);
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  background: var(--blue-500);
+  padding: 1.2rem 2.8rem;
+  --startY: -100%;
+  animation: move .2s
+
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.avatar {
+  width: 4.2rem;
+  height: 4.2rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+form {
+  flex: 2;
+}
+
+.input-wrapper label {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 1.2rem 1.6rem;
+  background-color: var(--white-100);
+  color: var(--white);
+  border: 0;
+  border-radius: 0.4rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.input-wrapper input::placeholder {
+  color: var(--white);
+}
+
+.container {
+  max-width: 122rem;
+  margin: 0 auto;
+}
+
+main {
+  --startY: 100%;
+  animation: move .6s;
+}
+
+main > img {
+  width: 100%;
+  height: 24rem;
+  object-fit: cover;
+  transition: all 200ms ease-out;
+}
+
+main > img:hover {
+  filter: hue-rotate(7deg) contrast(101%) saturate(200%);
+}
+
+.content {
+  padding: 3.2rem 2.6rem;
+}
+
+.content .title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 3.2rem;
+}
+
+.content .title h1 {
+  color: var(--gray-900);
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 160%;
+}
+
+.content .title ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.content .title ul li button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 200ms ease-out;
+}
+
+.content .title ul li button:hover {
+  transform: scale(1.1);
+}
+.content p {
+  font-size: 1.6rem;
+  line-height: 160%;
+  margin-bottom: 2rem;
+}
+
+aside {
+  padding: 0 2.6rem 3.2rem;
+}
+
+aside h2 {
+  color: var(--gray-900);
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 160%;
+  margin-bottom: 3.2rem;
+}
+
+aside ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem
+}
+
+aside ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.6rem;
+  --delay: .4s;
+  animation: appear .4s var(--delay) backwards;
+}
+
+aside ul li img {
+  width: 100%;
+  max-width: 15rem;
+  border-radius: 0.5rem;
+  transition: all 200ms ease-out;
+}
+
+aside ul li img:hover {
+  transform: scale(1.1);
+}
+
+aside ul li h3 {
+  color: var(--gray-900);
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 160%;
+  margin-bottom: 0.4rem;
+}
+
+aside ul li p {
+  font-size: 1.4rem;
+  line-height: 160%;
+}
+
+footer {
+  background: var(--blue-500);
+  font-size: 1.6rem;
+  color: var(--white);
+  text-align: center;
+  padding: 2.6rem 1.6rem;
+}
+
+@keyframes move {
+  from {
+    transform: translateY(var(--startY));
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+
+@media (min-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-areas: "article article sidebar";
+  }
+
+  .container main {
+    padding: 3.2rem 0 3.2rem 3.2rem;
+  }
+
+  main {
+    grid-area: article;
+  }
+
+  main > img {
+    border-radius: 0.5rem;
+    height: 40rem;
+  }
+
+  .content {
+    padding: 3.2rem 0;
+  }
+
+  .content .title {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+  }
+
+  aside {
+    grid-area: sidebar;
+    padding: 3.2rem;
+  }
+
+  aside ul li {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1024px) {
+  aside ul li {
+    flex-direction: row;
+  }
+}
